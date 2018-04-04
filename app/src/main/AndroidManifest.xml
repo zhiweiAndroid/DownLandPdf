@@ -31,6 +31,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider" />
         </provider>
+
+        <service
+            android:name=".service.UpdateService"
+            android:enabled="true" />
     </application>
 
 </manifest>

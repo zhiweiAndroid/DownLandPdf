@@ -1,6 +1,7 @@
 package com.example.user.downlandpdf;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.user.downlandpdf.service.UpdateService;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
@@ -21,6 +24,8 @@ import static com.zhy.http.okhttp.log.LoggerInterceptor.TAG;
 public class MainActivity extends AppCompatActivity implements ISupportOkHttp{
 
     public static final String url="http://snfqitfc.boyuanfinancial.com/sinafenqi-interface/customer/html/agreement/pdf/yianInsurance2.pdf";
+    private String netversion="3.1.0";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,14 @@ public class MainActivity extends AppCompatActivity implements ISupportOkHttp{
             }
         });
 
-
+        findViewById(R.id.btn1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent service = new Intent(MainActivity.this, UpdateService.class);
+                service.putExtra("INTENT_KEY_VERSION", netversion);
+                startService(service);
+            }
+        });
 
     }
 
@@ -89,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements ISupportOkHttp{
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                         Uri uri;
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            uri = FileProvider.getUriForFile(getApplicationContext(), "com.example.user.downlandpdf.fileprovider", file);
+                            uri = FileProvider.getUriForFile(getApplicationContext(), Constant.FILE_PROVIDER, file);
                         }else {
                             uri = Uri.fromFile(file);
                         }
