@@ -27,7 +27,7 @@ import static com.zhy.http.okhttp.log.LoggerInterceptor.TAG;
 public class MainActivity extends AppCompatActivity implements ISupportOkHttp{
 
     public static final String url="http://snfqitfc.boyuanfinancial.com/sinafenqi-interface/customer/html/agreement/pdf/yianInsurance2.pdf";
-    private String netversion="3.1.0";
+    private String netversion="1.0.1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

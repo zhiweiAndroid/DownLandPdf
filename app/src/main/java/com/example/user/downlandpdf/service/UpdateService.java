@@ -45,7 +45,6 @@ public class UpdateService extends Service {
     private long apkDownLoadId;
     private File apkFile;
 
- //   private final String URL_ALI = "http://shundaiapk.oss-cn-shanghai.aliyuncs.com/apk/Android_BiaoShi.apk";
 
 
     @Override
