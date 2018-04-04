@@ -51,7 +51,7 @@ public class UpdateService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        apkFile = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "sina_customer.apk");
+        apkFile = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "pdf.apk");
     }
 
     @Override
@@ -89,7 +89,7 @@ public class UpdateService extends Service {
         request.setVisibleInDownloadsUi(true);
 
         //设置下载后文件存放的位置
-        request.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, "sina_customer.apk");
+        request.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, "pdf.apk");
 
         request.setTitle("新浪分期正在更新...");
 

@@ -3,6 +3,8 @@ package com.example.user.downlandpdf;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.user.downlandpdf.service.UpdateService;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -30,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements ISupportOkHttp{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView tv1 = findViewById(R.id.tv1);
+        String appVersionName = getAppVersionName(this);
+        tv1.setText(appVersionName);
         Button  btn = findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +53,25 @@ public class MainActivity extends AppCompatActivity implements ISupportOkHttp{
             }
         });
 
+    }
+
+    /**
+     * 返回当前程序版本名
+     */
+    public static String getAppVersionName(Context context) {
+        String versionName = "";
+        try {
+            // ---get the package info---
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            versionName = pi.versionName;
+            if (versionName == null || versionName.length() <= 0) {
+                return "";
+            }
+        } catch (Exception e) {
+            Log.e("VersionInfo", "Exception", e);
+        }
+        return versionName;
     }
 
     private void initPermission() {

@@ -6,8 +6,8 @@ android {
         applicationId "com.example.user.downlandpdf"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 100
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -16,10 +16,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        release {
+            keyAlias 'pdf'
+            keyPassword '123456'
+            storeFile file('E:/WorkSpace/DownLandPdf/download.jks')
+            storePassword '123456'
+        }
+        debug {
+            keyAlias 'pdf'
+            keyPassword '123456'
+            storeFile file('E:/WorkSpace/DownLandPdf/download.jks')
+            storePassword '123456'
+        }
+    }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.0'
     //宏洋Okhttp
     compile 'com.zhy:okhttputils:2.6.2'
